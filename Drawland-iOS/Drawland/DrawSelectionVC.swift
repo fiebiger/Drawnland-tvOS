@@ -12,7 +12,7 @@ class DrawSelectionVC: UIViewController {
 
     @IBOutlet weak var drawWordDisplayLabel: UILabel!
     
-    var options = ["CAT", "DOG", "HORSE", "MOUSE"]
+    var options = ["CAT", "DOG", "HORSE", "MOUSE","PIG","LION","LLAMA","DOLPHIN","APE"]
     var currentWord = "CAT"
     
     override func viewDidLoad() {

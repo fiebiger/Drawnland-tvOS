@@ -10,9 +10,17 @@ import UIKit
 
 class DrawResultVC: UIViewController {
 
+    @IBOutlet weak var successLabel: UILabel!
+    var success:Bool!
+    
         override func viewDidLoad() {
         super.viewDidLoad()
         
+            if(!success){
+            successLabel.text = "TIME IS UP!"
+            successLabel.textColor = .redColor()
+            }
+            
                 // Do any additional setup after loading the view.
     }
 

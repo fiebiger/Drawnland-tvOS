@@ -14,12 +14,17 @@ class DrawGuessingVC: UIViewController,OEEventsObserverDelegate , UITableViewDel
     @IBOutlet weak var tableView: UITableView!
     var word:String!
     var attemps:[String] = []
+    var timer:NSTimer?
+    var count = 60 * 3
+    
+    @IBOutlet weak var timerLabel: UILabel!
     
     let openEarsEventsObserver = OEEventsObserver()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         // Do any additional setup after loading the view.
         
         openEarsEventsObserver.delegate = self
@@ -35,6 +40,8 @@ class DrawGuessingVC: UIViewController,OEEventsObserverDelegate , UITableViewDel
             
             do {
                 try OEPocketsphinxController.sharedInstance().setActive(true)
+                OEPocketsphinxController.sharedInstance().secondsOfSilenceToDetect = 0.2
+                
                 OEPocketsphinxController.sharedInstance().startListeningWithLanguageModelAtPath(lmPath, dictionaryAtPath: dicPath, acousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"), languageModelIsJSGF: false)
             } catch {
                 
@@ -82,10 +89,21 @@ class DrawGuessingVC: UIViewController,OEEventsObserverDelegate , UITableViewDel
     }
     */
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     
+        if let dest = segue.destinationViewController as? DrawResultVC {
+            dest.success  = sender as! Bool
+        }
+        
+    }
+    
     // MARK: - Speach delegate
     
     func pocketsphinxDidReceiveHypothesis(hypothesis: String!, recognitionScore: String!, utteranceID: String!) {
-        attemps.append(hypothesis)
+        
+        var array = hypothesis.componentsSeparatedByString(" ")
+        array.appendContentsOf(attemps)
+        attemps = array
         tableView.reloadData()
         if hypothesis.lowercaseString.rangeOfString(word.lowercaseString) != nil{
         OEPocketsphinxController.sharedInstance().stopListening()
@@ -107,9 +125,25 @@ class DrawGuessingVC: UIViewController,OEEventsObserverDelegate , UITableViewDel
         
     }
     
+    func pocketSphinxContinuousTeardownDidFailWithReason(reasonForFailure: String!) {
+        print(reasonForFailure)
+    }
+    
     func pocketSphinxContinuousSetupDidFailWithReason(reasonForFailure: String!) {
         print("Listening setup wasn't successful and returned the failure reason: \(reasonForFailure)")
         
+    }
+    
+    func updateTimer(){
+        if(count > 0){
+            let minutes = String(count / 60)
+            let seconds = String(count % 60)
+            timerLabel.text = minutes + ":" + (seconds == "0" ? "00" : seconds) + " REMAINING"
+            count -= 1
+        }else{
+        timer?.invalidate()
+        self.performSegueWithIdentifier("finish", sender: false)
+        }
     }
 
 
