@@ -42,7 +42,10 @@ class TouchTrackerView: UIView
     lazy var path: UIBezierPath = {
         let path = UIBezierPath()
         
-        path.lineWidth = 6.0
+        path.lineWidth = 8.0
+        path.miterLimit = -20
+        path.lineCapStyle = .Round
+        path.lineJoinStyle = .Round
         
         return path
     }()
@@ -54,9 +57,9 @@ class TouchTrackerView: UIView
     
     func didTapAction(sender: UITapGestureRecognizer)
     {
-        drawingMode = true
+        drawingMode = !drawingMode
         
-        if let restartTouch = restartTouch {
+        if let restartTouch = restartTouch where drawingMode {
             
             let location = restartTouch.locationInView(self)
             path.moveToPoint(location)
@@ -122,16 +125,6 @@ class TouchTrackerView: UIView
         // Cursor
         cursor.hidden = true
     }
-    
-//    private func _elaborateNewPoint(touch: UITouch) -> CGPoint {
-//        
-//        guard let lastTouch = lastTouch else { return touch.locationInView(self) }
-//        
-//        // calculate the delta
-//        let delta = (lastTouch.locationInView(self).x - lastTouch.previousLocationInView(self).x, lastTouch.locationInView(self).y - lastTouch.previousLocationInView(self).y)
-//        
-//        let elaboratedDelta = ((delta.0 - 10 > 0) ? delta.0 - 10 : delta.0, delta.1 - 10)
-//    }
     
     override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?)
     {
@@ -268,10 +261,6 @@ class ViewController: UIViewController {
             .validate()
             .responseJSON { (let result) in
                 
-                self.answersTimer = NSTimer(timeInterval: 1, target: self, selector: #selector(ViewController.answersTimerFired(_:)), userInfo: nil, repeats: false)
-                
-                NSRunLoop.mainRunLoop().addTimer(self.answersTimer, forMode: NSRunLoopCommonModes)
-                
                 switch result.result {
                     
                 case let .Success(json):
@@ -282,18 +271,30 @@ class ViewController: UIViewController {
 
                             // Start the game
                             self.overlayView.hidden = true
+                            
+                            self.answersTimer = NSTimer(timeInterval: 1, target: self, selector: #selector(ViewController.answersTimerFired(_:)), userInfo: nil, repeats: false)
+                            
+                            NSRunLoop.mainRunLoop().addTimer(self.answersTimer, forMode: NSRunLoopCommonModes)
 
                         } else if state == "Won" {
 
                             self.overlayView.hidden = false
 
-                            self.overlayLabel.text = "You won"
+                            self.overlayLabel.text = "🎉 You won 🎉"
+                            
+                            self.touchView.clear()
+                            
+                            self.tries.removeAll()
                             
                         } else if state == "Lost" {
                             
                             self.overlayView.hidden = false
                             
-                            self.overlayLabel.text = "You lost"
+                            self.overlayLabel.text = "You lost, try again 😉"
+                            
+                            self.touchView.clear()
+                            
+                            self.tries.removeAll()
                         
                         } else {
                             
@@ -301,13 +302,13 @@ class ViewController: UIViewController {
                         }
                     }
                     
-                    if let attempts = json["try"] as? [AnyObject] {
+                    if let attempts = json["try"] as? [String : AnyObject] {
                         
                         self.tries.removeAll()
                         
-                        attempts.forEach {
+                        attempts.forEach { (let key, let value) in
                             
-                            if let attemptDictionary = $0 as? [String : AnyObject] {
+                            if let attemptDictionary = value as? [String : AnyObject] {
                                 
                                 let attempt = attemptDictionary["word"] as! String
                                 
