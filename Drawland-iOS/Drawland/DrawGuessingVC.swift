@@ -7,10 +7,30 @@
 //
 
 import UIKit
+import Firebase
 
 
 class DrawGuessingVC: UIViewController,OEEventsObserverDelegate , UITableViewDelegate, UITableViewDataSource{
 
+    
+    lazy var firebaseRoot:Firebase = {
+     return Firebase(url: "https://drawland.firebaseio.com")
+    }()
+    lazy var firebaseGameReference:Firebase = {
+        return Firebase(url: "https://drawland.firebaseio.com/current_game")
+    }()
+    
+    lazy var firebaseGame:Firebase = {
+        return Firebase(url: "https://drawland.firebaseio.com/\(self.gameID!)/try")
+    }()
+    lazy var firebaseGameStatus:Firebase = {
+        return Firebase(url: "https://drawland.firebaseio.com/\(self.gameID!)/state")
+    }()
+
+    
+    
+    var gameID:String?
+    
     @IBOutlet weak var tableView: UITableView!
     var word:String!
     var attemps:[String] = []
@@ -23,6 +43,15 @@ class DrawGuessingVC: UIViewController,OEEventsObserverDelegate , UITableViewDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let game = ["state": "Started"]
+       
+        let newGame = firebaseRoot.childByAutoId()
+        newGame.setValue(game)
+        gameID = newGame.key
+        
+        firebaseGameReference.setValue(gameID)
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         // Do any additional setup after loading the view.
@@ -74,7 +103,7 @@ class DrawGuessingVC: UIViewController,OEEventsObserverDelegate , UITableViewDel
         cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
         }
         
-        cell?.textLabel?.text = attemps[indexPath.row];
+        cell?.textLabel?.text = attemps[indexPath.row].uppercaseString;
         return cell!
     }
     
@@ -101,12 +130,21 @@ class DrawGuessingVC: UIViewController,OEEventsObserverDelegate , UITableViewDel
     
     func pocketsphinxDidReceiveHypothesis(hypothesis: String!, recognitionScore: String!, utteranceID: String!) {
         
-        var array = hypothesis.componentsSeparatedByString(" ")
+        var array:[String] = hypothesis.componentsSeparatedByString(" ")
+        
+        for word in array {
+        
+            firebaseGame.childByAutoId().setValue(["word":word.uppercaseString])
+        
+        }
+        
         array.appendContentsOf(attemps)
         attemps = array
         tableView.reloadData()
         if hypothesis.lowercaseString.rangeOfString(word.lowercaseString) != nil{
         OEPocketsphinxController.sharedInstance().stopListening()
+            
+            firebaseGameStatus.setValue("Won")
         self.performSegueWithIdentifier("finish", sender: true)
         }
     }
@@ -138,10 +176,12 @@ class DrawGuessingVC: UIViewController,OEEventsObserverDelegate , UITableViewDel
         if(count > 0){
             let minutes = String(count / 60)
             let seconds = String(count % 60)
-            timerLabel.text = minutes + ":" + (seconds == "0" ? "00" : seconds) + " REMAINING"
+            timerLabel.text = minutes + ":" + (seconds.characters.count == 1 ? seconds + "0" : seconds) + " REMAINING"
             count -= 1
         }else{
         timer?.invalidate()
+            
+        firebaseGameStatus.setValue("Lost")
         self.performSegueWithIdentifier("finish", sender: false)
         }
     }
