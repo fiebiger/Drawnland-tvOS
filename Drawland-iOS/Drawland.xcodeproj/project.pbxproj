@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		91914D5C1CB907160092C7A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91914D5B1CB907160092C7A2 /* AppDelegate.swift */; };
-		91914D5E1CB907160092C7A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91914D5D1CB907160092C7A2 /* ViewController.swift */; };
+		91914D5E1CB907160092C7A2 /* GameStartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91914D5D1CB907160092C7A2 /* GameStartVC.swift */; };
 		91914D611CB907160092C7A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91914D5F1CB907160092C7A2 /* Main.storyboard */; };
 		91914D631CB907160092C7A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91914D621CB907160092C7A2 /* Assets.xcassets */; };
 		91914D661CB907160092C7A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91914D641CB907160092C7A2 /* LaunchScreen.storyboard */; };
@@ -17,12 +17,16 @@
 		91914D751CB9093F0092C7A2 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 91914D721CB9093F0092C7A2 /* AcousticModelEnglish.bundle */; };
 		91914D761CB9093F0092C7A2 /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91914D731CB9093F0092C7A2 /* OpenEars.framework */; };
 		91914D771CB9093F0092C7A2 /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91914D741CB9093F0092C7A2 /* Slt.framework */; };
+		91914D791CB9185F0092C7A2 /* DrawSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91914D781CB9185F0092C7A2 /* DrawSelectionVC.swift */; };
+		91914D7B1CB9187E0092C7A2 /* DrawGuessingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91914D7A1CB9187E0092C7A2 /* DrawGuessingVC.swift */; };
+		91914D7D1CB918900092C7A2 /* DrawResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91914D7C1CB918900092C7A2 /* DrawResultVC.swift */; };
+		91914D801CB930660092C7A2 /* animals.txt in Resources */ = {isa = PBXBuildFile; fileRef = 91914D7F1CB930660092C7A2 /* animals.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		91914D581CB907160092C7A2 /* Drawland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drawland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91914D5B1CB907160092C7A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		91914D5D1CB907160092C7A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		91914D5D1CB907160092C7A2 /* GameStartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStartVC.swift; sourceTree = "<group>"; };
 		91914D601CB907160092C7A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		91914D621CB907160092C7A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91914D651CB907160092C7A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,6 +36,11 @@
 		91914D721CB9093F0092C7A2 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
 		91914D731CB9093F0092C7A2 /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
 		91914D741CB9093F0092C7A2 /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
+		91914D781CB9185F0092C7A2 /* DrawSelectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawSelectionVC.swift; sourceTree = "<group>"; };
+		91914D7A1CB9187E0092C7A2 /* DrawGuessingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawGuessingVC.swift; sourceTree = "<group>"; };
+		91914D7C1CB918900092C7A2 /* DrawResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawResultVC.swift; sourceTree = "<group>"; };
+		91914D7E1CB919DB0092C7A2 /* BridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeHeader.h; sourceTree = "<group>"; };
+		91914D7F1CB930660092C7A2 /* animals.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = animals.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,13 +77,18 @@
 		91914D5A1CB907160092C7A2 /* Drawland */ = {
 			isa = PBXGroup;
 			children = (
+				91914D7F1CB930660092C7A2 /* animals.txt */,
 				91914D711CB908450092C7A2 /* Frameworks */,
 				91914D5B1CB907160092C7A2 /* AppDelegate.swift */,
-				91914D5D1CB907160092C7A2 /* ViewController.swift */,
+				91914D5D1CB907160092C7A2 /* GameStartVC.swift */,
 				91914D5F1CB907160092C7A2 /* Main.storyboard */,
 				91914D621CB907160092C7A2 /* Assets.xcassets */,
 				91914D641CB907160092C7A2 /* LaunchScreen.storyboard */,
 				91914D671CB907160092C7A2 /* Info.plist */,
+				91914D781CB9185F0092C7A2 /* DrawSelectionVC.swift */,
+				91914D7A1CB9187E0092C7A2 /* DrawGuessingVC.swift */,
+				91914D7C1CB918900092C7A2 /* DrawResultVC.swift */,
+				91914D7E1CB919DB0092C7A2 /* BridgeHeader.h */,
 			);
 			path = Drawland;
 			sourceTree = "<group>";
@@ -150,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91914D661CB907160092C7A2 /* LaunchScreen.storyboard in Resources */,
+				91914D801CB930660092C7A2 /* animals.txt in Resources */,
 				91914D751CB9093F0092C7A2 /* AcousticModelEnglish.bundle in Resources */,
 				91914D631CB907160092C7A2 /* Assets.xcassets in Resources */,
 				91914D611CB907160092C7A2 /* Main.storyboard in Resources */,
@@ -163,8 +178,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91914D5E1CB907160092C7A2 /* ViewController.swift in Sources */,
+				91914D7D1CB918900092C7A2 /* DrawResultVC.swift in Sources */,
+				91914D7B1CB9187E0092C7A2 /* DrawGuessingVC.swift in Sources */,
+				91914D5E1CB907160092C7A2 /* GameStartVC.swift in Sources */,
 				91914D5C1CB907160092C7A2 /* AppDelegate.swift in Sources */,
+				91914D791CB9185F0092C7A2 /* DrawSelectionVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +305,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = maluan.team.Drawland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Drawland/BridgeHeader.h;
 			};
 			name = Debug;
 		};
@@ -302,6 +321,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = maluan.team.Drawland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Drawland/BridgeHeader.h;
 			};
 			name = Release;
 		};
