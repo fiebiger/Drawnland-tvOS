@@ -133,6 +133,8 @@ class TouchTrackerView: UIView
     
     override func drawRect(rect: CGRect)
     {
+        UIColor.whiteColor().setStroke()
+        
         path.stroke()
     }
     
@@ -203,7 +205,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        answersTableView.backgroundColor = UIColor.whiteColor()
         answersTableView.layer.cornerRadius = 10
         
         touchView.layer.cornerRadius = 10
@@ -338,6 +339,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Attempts"
+    }
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        let headerView = view as! UITableViewHeaderFooterView
+        
+        headerView.textLabel?.textColor = UIColor.whiteColor()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
