@@ -12,6 +12,11 @@
 		91914D611CB907160092C7A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91914D5F1CB907160092C7A2 /* Main.storyboard */; };
 		91914D631CB907160092C7A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91914D621CB907160092C7A2 /* Assets.xcassets */; };
 		91914D661CB907160092C7A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91914D641CB907160092C7A2 /* LaunchScreen.storyboard */; };
+		91914D6E1CB908280092C7A2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91914D6D1CB908280092C7A2 /* AudioToolbox.framework */; };
+		91914D701CB9082F0092C7A2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91914D6F1CB9082F0092C7A2 /* AVFoundation.framework */; };
+		91914D751CB9093F0092C7A2 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 91914D721CB9093F0092C7A2 /* AcousticModelEnglish.bundle */; };
+		91914D761CB9093F0092C7A2 /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91914D731CB9093F0092C7A2 /* OpenEars.framework */; };
+		91914D771CB9093F0092C7A2 /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91914D741CB9093F0092C7A2 /* Slt.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		91914D621CB907160092C7A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91914D651CB907160092C7A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		91914D671CB907160092C7A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91914D6D1CB908280092C7A2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		91914D6F1CB9082F0092C7A2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		91914D721CB9093F0092C7A2 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
+		91914D731CB9093F0092C7A2 /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
+		91914D741CB9093F0092C7A2 /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +39,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91914D771CB9093F0092C7A2 /* Slt.framework in Frameworks */,
+				91914D701CB9082F0092C7A2 /* AVFoundation.framework in Frameworks */,
+				91914D6E1CB908280092C7A2 /* AudioToolbox.framework in Frameworks */,
+				91914D761CB9093F0092C7A2 /* OpenEars.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +68,7 @@
 		91914D5A1CB907160092C7A2 /* Drawland */ = {
 			isa = PBXGroup;
 			children = (
+				91914D711CB908450092C7A2 /* Frameworks */,
 				91914D5B1CB907160092C7A2 /* AppDelegate.swift */,
 				91914D5D1CB907160092C7A2 /* ViewController.swift */,
 				91914D5F1CB907160092C7A2 /* Main.storyboard */,
@@ -62,6 +77,18 @@
 				91914D671CB907160092C7A2 /* Info.plist */,
 			);
 			path = Drawland;
+			sourceTree = "<group>";
+		};
+		91914D711CB908450092C7A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91914D721CB9093F0092C7A2 /* AcousticModelEnglish.bundle */,
+				91914D731CB9093F0092C7A2 /* OpenEars.framework */,
+				91914D741CB9093F0092C7A2 /* Slt.framework */,
+				91914D6F1CB9082F0092C7A2 /* AVFoundation.framework */,
+				91914D6D1CB908280092C7A2 /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91914D661CB907160092C7A2 /* LaunchScreen.storyboard in Resources */,
+				91914D751CB9093F0092C7A2 /* AcousticModelEnglish.bundle in Resources */,
 				91914D631CB907160092C7A2 /* Assets.xcassets in Resources */,
 				91914D611CB907160092C7A2 /* Main.storyboard in Resources */,
 			);
@@ -251,6 +279,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Drawland",
+				);
 				INFOPLIST_FILE = Drawland/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = maluan.team.Drawland;
@@ -262,6 +294,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Drawland",
+				);
 				INFOPLIST_FILE = Drawland/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = maluan.team.Drawland;
@@ -288,6 +324,7 @@
 				91914D6C1CB907160092C7A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
