@@ -283,12 +283,18 @@ class ViewController: UIViewController {
                             // Start the game
                             self.overlayView.hidden = true
 
-                        } else if state == "Finished" {
+                        } else if state == "Won" {
 
                             self.overlayView.hidden = false
 
-                            self.overlayLabel.text = "You win"
+                            self.overlayLabel.text = "You won"
                             
+                        } else if state == "Lost" {
+                            
+                            self.overlayView.hidden = false
+                            
+                            self.overlayLabel.text = "You lost"
+                        
                         } else {
                             
                             self.overlayView.hidden = false
