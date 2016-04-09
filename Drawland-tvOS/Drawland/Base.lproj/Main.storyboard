@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,30 +19,73 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96y-dg-NcA">
-                                <rect key="frame" x="863" y="980" width="195" height="50"/>
+                                <rect key="frame" x="120" y="936" width="170" height="58"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="4ZK-th-5tq"/>
+                                    <constraint firstAttribute="height" constant="58" id="4ZK-th-5tq"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="clearAction:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="UMQ-RR-e5l"/>
+                                </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hci-Vq-9cm" customClass="TouchTrackerView" customModule="Drawland" customModuleProvider="target">
-                                <rect key="frame" x="120" y="100" width="1680" height="830"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hci-Vq-9cm" customClass="TouchTrackerView" customModule="Drawland" customModuleProvider="target">
+                                <rect key="frame" x="120" y="100" width="1114" height="756"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="40" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="17q-NX-EEE">
+                                <rect key="frame" x="1320" y="100" width="480" height="756"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnswersCell" rowHeight="60" id="Mnp-5o-W1O" customClass="AnswersCell" customModule="Drawland" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="54" width="480" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mnp-5o-W1O" id="ldT-50-4tf">
+                                            <rect key="frame" x="0.0" y="0.0" width="480" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doM-Lf-aMO">
+                                                    <rect key="frame" x="219" y="19" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="doM-Lf-aMO" firstAttribute="centerX" secondItem="ldT-50-4tf" secondAttribute="centerX" id="3Yj-ME-vxr"/>
+                                                <constraint firstItem="doM-Lf-aMO" firstAttribute="centerY" secondItem="ldT-50-4tf" secondAttribute="centerY" id="I44-dJ-mjA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="mainTitle" destination="doM-Lf-aMO" id="4OJ-Ez-n1x"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="CtS-g0-UwK"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="dJa-D2-03V"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="hci-Vq-9cm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="100" id="JNP-Er-sk5"/>
-                            <constraint firstItem="96y-dg-NcA" firstAttribute="top" secondItem="hci-Vq-9cm" secondAttribute="bottom" constant="50" id="ROH-lT-Smf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hci-Vq-9cm" secondAttribute="trailing" constant="100" id="ezb-83-VXK"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="96y-dg-NcA" secondAttribute="bottom" constant="50" id="mY7-7l-xvf"/>
-                            <constraint firstItem="hci-Vq-9cm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="rgC-03-cKN"/>
-                            <constraint firstItem="hci-Vq-9cm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="y98-6i-DCh"/>
-                            <constraint firstItem="96y-dg-NcA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="z6l-0y-00H"/>
+                            <constraint firstItem="17q-NX-EEE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="5b8-Q5-soI"/>
+                            <constraint firstItem="hci-Vq-9cm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="94L-jd-6Vw"/>
+                            <constraint firstItem="17q-NX-EEE" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.25" id="C08-Bn-VKQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="17q-NX-EEE" secondAttribute="trailing" constant="100" id="I4n-7b-lxn"/>
+                            <constraint firstItem="hci-Vq-9cm" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.58" id="j8V-Tr-fIH"/>
+                            <constraint firstItem="hci-Vq-9cm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="100" id="j9Q-Kv-m41"/>
+                            <constraint firstItem="hci-Vq-9cm" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="jdq-eg-MhF"/>
+                            <constraint firstItem="96y-dg-NcA" firstAttribute="top" secondItem="hci-Vq-9cm" secondAttribute="bottom" constant="80" id="k71-tm-NtQ"/>
+                            <constraint firstItem="17q-NX-EEE" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="oBr-DQ-cHJ"/>
+                            <constraint firstItem="96y-dg-NcA" firstAttribute="leading" secondItem="hci-Vq-9cm" secondAttribute="leading" id="p4f-Gw-OIl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="answersTableView" destination="17q-NX-EEE" id="AKE-sa-dYH"/>
+                        <outlet property="touchView" destination="hci-Vq-9cm" id="nog-0u-H9v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
